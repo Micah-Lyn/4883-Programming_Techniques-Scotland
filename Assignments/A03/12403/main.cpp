@@ -2,11 +2,10 @@
 using namespace std;
 
 int main(){
-
-    int account;
-    int T, K; 
-
+    
     string Op;
+    int account;
+    int K, T; 
 
     cin>> T;
    while (T--) {
