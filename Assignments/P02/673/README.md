@@ -15,4 +15,4 @@ program can assume that the maximum string length is 128.
 | :---: | -------------------------- | ---------------------------------------------------------- |
 |   1   | [main.cpp](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/P02/673/main.cpp)     | solution file.                                             |
 |   2   | [input](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/P02/673/input)           | Test input file from problem statement   
-|   3   | [input](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/P02/673/input1)           | Test input file from problem statement   |
+|   3   | [input1](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/P02/673/input1)           | Test input file from problem statement   |
