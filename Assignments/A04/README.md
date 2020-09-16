@@ -7,8 +7,8 @@
 
 |   #   | File                       | Description                                                |
 | :---: | -------------------------- | ---------------------------------------------------------- |
-|   1   | [1264](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/P02/514/main.cpp)     | problem 1                                             |
-|   2   | [12347](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/P02/514/input)           |problem 2                   |
+|   1   | [1264](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/A04/1264.pdf)     | problem 1                                             |
+|   2   | [12347](https://github.com/Micah-Lyn/4883-Programming_Techniques-Scotland/blob/master/Assignments/A04/12347.pdf)           |problem 2                   |
 
 
 
