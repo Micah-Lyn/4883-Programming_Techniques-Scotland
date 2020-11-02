@@ -3,11 +3,13 @@
 
 using namespace std;
 
-vector<int>peg[3];
-char c[3] = { 'A','B','C' };
-int s, m;
 
-void print()
+int s, m;
+char c[3] = {'A','B','C'};
+vector<int>peg[3];
+
+
+void output()
 {
     int size;
 
@@ -41,7 +43,7 @@ void solve(int n, int l, int m, int r)
 
         peg[r].push_back(peg[l].back());
         peg[l].pop_back();
-        print();
+        output();
     }
     else
     {
@@ -52,7 +54,7 @@ void solve(int n, int l, int m, int r)
         
         peg[r].push_back(peg[l].back());
         peg[l].pop_back();
-        print();
+        output();
 
         solve(n - 1, m, l, r);
     }
@@ -74,7 +76,7 @@ int main()
 
             peg[0].push_back(i);
 
-        print();
+        output();
         solve(n, 0, 1, 2);
 
         for (int i = 0; i < 3; i++)
