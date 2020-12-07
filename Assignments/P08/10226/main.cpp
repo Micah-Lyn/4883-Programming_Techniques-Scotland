@@ -1,37 +1,50 @@
 #include <iostream>
-#include <algorithm>
-#include <string>
-#include <vector>
+#include <iomanip>
 #include <map>
 
 using namespace std;
 
 int main()
 {
-    int t;
 
-    while (cin >> t)
+    int testcases;
+    
+    string currTree;
+
+    cin >> testcases;
+
+    getline(cin, currTree);
+
+    getline(cin, currTree);
+
+    while (testcases--)
     {
-        getchar();
-        getchar();
+        int treeTotal = 0;
 
-        string tree;
-        int n = 0;
+        map<string, int> tree;
 
-        map<string, int> rec;
-
-        while (getline(cin, tree))
+        while (true)
         {
-            if (tree.compare("") == 0)
+            getline(cin, currTree);
+
+            if (currTree == "")
+            {
                 break;
-            rec[tree]++;
-            n++;
+            }
+
+            tree[currTree]++;
+            treeTotal++;
         }
-        for (map<string, int>::iterator i = rec.begin(); i != rec.end(); i++)
-            cout << i->first << " " << fixed << setprecision(4) << i->second * 100.0 / n << endl;
-        if (t)
-            puts("");
-        t--;
+
+        for (map<string, int>::iterator i = tree.begin(); i != tree.end(); i++)
+        {
+            cout << i->first << ' ' << fixed << setprecision(4) << i->second * (100.0 / treeTotal) << '\n';
+        }
+
+        if (testcases)
+        {
+            cout << '\n';
+        }
     }
 
     return 0;
