@@ -1,82 +1,91 @@
 //http://www.cplusplus.com/forum/beginner/106288/
-//https://www.tutorialspoint.com/check-if-a-string-contains-a-sub-string-in-cplusplus#:~:text=This%20find()%20method%20returns,will%20return%20string%3A%3Anpos. 
+//https://www.tutorialspoint.com/check-if-a-string-contains-a-sub-string-in-cplusplus#:~:text=This%20find()%20method%20returns,will%20return%20string%3A%3Anpos.
 
 #include <iostream>
 #include <queue>
+#include <stack>
 #include <string>
-#include <cstring>
 
 using namespace std;
 
-int main() {
+int main()
+{
 
-string strLine;
-char str;
-queue<string> thisQueue;
-queue<char> thatQueue;
+  string strLine;
 
+  stack<string> value;
 
-while (getline(cin,strLine)){
+  queue<char> thisQueue;
 
-  int lineLength = strLine.size();
+  while (getline(cin, strLine))
+  {
 
-    bool bracket = false;
-    
-    string tempStr;
-    for (size_t i = 0; i < lineLength; ++i)
-    { 
-        char ch = strLine.at(i);
-        if (ch == '[') 
-           bracket = true;
-        
-        if(bracket){
-          if (ch == '['){
-            if(tempStr != ""){
-            thisQueue.push(tempStr);
-            bracket = true;
-            tempStr= "";
-            }
-          } 
-          else if ( ch == ']'){
-          if ( tempStr != ""){
-           thisQueue.push(tempStr);
-            bracket = false;
-            tempStr = "";
-          }
-          }      
-          else {
-            tempStr += ch;
-          }  
-          }
-        else
-        if ( !bracket) {
-          if(ch!='[' && ch!= ']')
-           thatQueue.push(ch);
+    char str = 'Y';
+    string tempStr = "";
+
+    while (!value.empty())
+      value.pop();
+
+    while (!thisQueue.empty())
+      thisQueue.pop();
+
+    for (int i = 0; i < strLine.length(); i++)
+    {
+
+      if (strLine.at(i) == '[')
+      {
+        str = 'N';
+      }
+
+      if (str == 'N')
+      {
+        if (strLine.at(i) == ']')
+        {
+          if (tempStr != "")
+            value.push(tempStr);
+          tempStr = "";
+          str = 'Y';
         }
-     }
 
-if(bracket){
-  thisQueue.push(tempStr);
-  tempStr="";
+        else
+        {
+          if (strLine.at(i) == '[')
+          {
+            if (tempStr != "")
+              value.push(tempStr);
+            tempStr = "";
+            str = 'N';
+          }
+          else
+          {
+            tempStr += strLine.at(i);
+          }
+        }
+      }
+      else
+      {
+        if (strLine.at(i) != '[' && strLine.at(i) != ']')
+          thisQueue.push(strLine.at(i));
+      }
+    }
+    if (str == 'N')
+      value.push(tempStr);
+    tempStr = "";
+
+    while (!value.empty())
+    {
+      cout << value.top();
+      value.pop();
+    }
+
+    while (!thisQueue.empty())
+    {
+      cout << thisQueue.front();
+      thisQueue.pop();
+    }
+
+    tempStr = "";
+
+    cout << '\n';
+  }
 }
-
-
-
-while (!thisQueue.empty()){
-  if(thisQueue.front() != "[" && thisQueue.front() != "]")
-  cout<< thisQueue.front();
-  thisQueue.pop();
-}
-
-while (!thatQueue.empty()){
- if(thatQueue.front() != '[' && thatQueue.front() != ']')
-  cout<< thatQueue.front();
-  thatQueue.pop();
-
-}
- cout << "\n";
-}
-return 0;
-}
-
-
