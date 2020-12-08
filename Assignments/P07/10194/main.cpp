@@ -26,12 +26,14 @@ bool compare(struct team A, struct team B){
   }
 
   
-	if (A.win > B.win){
-  	return true;
-  }
-
 	if (playB > playA)	{
     return false;
+
+  }
+
+  
+	if (A.win > B.win){
+  	return true;
   }
 
 
@@ -126,13 +128,13 @@ int main(){
 
 		getline(cin, tName);
 
-		int n, g;
+		int numTeam;
 
-		cin >> n;
+		cin >> numTeam;
 
 		getchar();
 
-		for (int i = 0; i < n; i++){
+		for (int i = 0; i < numTeam; i++){
 
 			getline(cin, cTeams[i].name);
 
@@ -140,31 +142,35 @@ int main(){
 			cTeams[i].gScore = 0;
 			cTeams[i].loss = cTeams[i].tie = cTeams[i].win = 0;
 		}
-		cin >> g;
+
+    int gameNum; 
+		cin >> gameNum;
 
 		getchar();
 
-		for (int j = 0; j < g; j++){
+		for (int j = 0; j < gameNum; j++){
 
 			int a, AS = 0, BS = 0;
-			string R, A, B;
+
+			string TA, TB, R;
+
 			getline(cin, R);
 
 			for (a = 0; R[a] != '#'; a++)	
-         A.push_back(R[a]);
+         TA.push_back(R[a]);
 
 			for (a++; R[a] != '@'; a++)	
           AS = AS * 10 + R[a] - '0';
 
-			for (a++; R[a] != '#'; a++)\
+			for (a++; R[a] != '#'; a++)
       	BS = BS * 10 + R[a] - '0';
 
 			for (a++; R[a] != '\0'; a++)
-      	B.push_back(R[a]);
+      	TB.push_back(R[a]);
 
-			for (int k = 0; k < n; k++){
+			for (int k = 0; k < numTeam; k++){
 
-				if (cTeams[k].name == A){
+				if (cTeams[k].name == TA){
 
 					cTeams[k].gScore += AS;
 
@@ -178,11 +184,13 @@ int main(){
           	cTeams[k].tie++;
           }
           
-					if (AS < BS) {	cTeams[k].loss++;
+					if (AS < BS) {	
+            cTeams[k].loss++;
           }
+
 				}
 
-				if (cTeams[k].name == B){
+				if (cTeams[k].name == TB){
 
 					cTeams[k].gScore += BS;
 					cTeams[k].gAgainst += AS;
@@ -204,11 +212,11 @@ int main(){
 			}
 		}
 
-		sort(cTeams, cTeams + n, compare);
+		sort(cTeams, cTeams + numTeam, compare);
 
 		cout << tName << endl;
 
-		for (int i = 0; i < n; i++){
+		for (int i = 0; i < numTeam; i++){
 
 			cout << i + 1 << ") " << cTeams[i].name << " " << 
         cTeams[i].win * 3 + cTeams[i].tie << "p, ";
@@ -228,3 +236,4 @@ int main(){
 	}
 	return 0;
 }
+
