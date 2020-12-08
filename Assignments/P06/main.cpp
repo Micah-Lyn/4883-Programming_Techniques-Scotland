@@ -1,90 +1,109 @@
-#include <iostream>
+#include<cstdio>
+#include<iostream>
 #include<vector>
 
 using namespace std;
 
-
-int s, m;
-char c[3] = {'A','B','C'};
 vector<int>peg[3];
 
+char p[3] = { 'A','B','C' };
+
+int runs, rNum;
 
 void output()
 {
-    int size;
-
+  
     cout << '\n';
+
     for (int i = 0; i < 3; i++)
     {
         
-        cout <<c[i] <<"=>"; 
+        cout << p[i] << "=>";
+
         if (!peg[i].empty())
         {
-            printf("   ");
-            size = peg[i].size();
-            for (int j = 0; j < size - 1; j++)
-                cout << peg[i][j] << " ";
+      
+            cout << "   ";
+           
+
+            for (int j = 0; j < peg[i].size() - 1; j++)
+               cout << peg[i][j] << ' ';
 
             
             cout << peg[i].back();
         }
-     
-        cout <<'\n';
+        cout << '\n';
     }
 }
-void solve(int n, int l, int m, int r)
+
+
+void compute(int n, int l, int m, int r)
 {
-    if (s == m)
+    if (runs == rNum){
         return;
+
+    }
 
     if (n == 1)
     {
-        s++;
-
+        runs++;
         peg[r].push_back(peg[l].back());
         peg[l].pop_back();
         output();
     }
     else
     {
-        solve(n - 1, l, r, m);
-        if (s == m)
+        compute(n - 1, l, r, m);
+
+        if (runs == rNum){
             return;
-        s++;
+
+        }
+        
+        runs++;
         
         peg[r].push_back(peg[l].back());
         peg[l].pop_back();
+
         output();
 
-        solve(n - 1, m, l, r);
+        compute(n - 1, m, l, r);
     }
 }
 
 int main()
 {
+
     int n, tCase = 1;
-   
-    cin >> n >> m;
 
-    while(n != 0)
+    cin >> n >> rNum;
+
+    while (n!=0)
     {
-       
+        
         cout << "Problem #" << tCase++ << '\n';
-        s = 0;
 
-        for (int i = n; i> 0 ; i--)
+        runs = 0;
 
+        for (int i = n; i; i--)
             peg[0].push_back(i);
 
         output();
-        solve(n, 0, 1, 2);
+
+        compute(n, 0, 1, 2);
 
         for (int i = 0; i < 3; i++)
             peg[i].clear();
 
+       
         cout <<'\n';
-        cin >> n >> m;
+
+        cin >> n >> rNum;
     }
 
     return 0;
 }
+
+
+
+
